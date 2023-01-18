@@ -1,8 +1,4 @@
-const NewGameButton = () => {
-  function onClick () {
-    console.log("hello!")
-  }
-
+const NewGameButton = ({onClick}) => {
   return (
     <div className="w-24 md:w-40 h-10 
     flex flex-col justify-center

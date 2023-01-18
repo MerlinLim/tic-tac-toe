@@ -1,38 +1,20 @@
-import { useState } from "react"
-
 import Button from "components/button"
 
-const Game = () => {
-    const [array, setArray] = useState([
-        {id: 0, value:""},
-        {id: 1, value:""},
-        {id: 2, value:""},
-        {id: 3, value:""},
-        {id: 4, value:""},
-        {id: 5, value:""},
-        {id: 6, value:""},
-        {id: 7, value:""},
-        {id: 8, value:""}
-    ]);
-
-    const[turn, setTurn] = useState([
-        {id:0, value:"X"}
-    ])
-
-    
-
+const Game = ({array, onClick}) => {
   return (
-    <div className="w-80 h-80 flex justify-center rounded-lg bg-orange-900">
-        <div className="w-full grid gap-4 grid-cols-3 grid-rows-3 items-center">
-            <Button />
-            <Button />
-            <Button />
-            <Button />
-            <Button />
-            <Button />
-            <Button />
-            <Button />
-            <Button />
+    <div className="w-96 h-96 flex justify-center rounded-lg bg-orange-900">
+        <div className="w-full grid gap-1 grid-cols-3 grid-rows-3
+                        divide-x-4 divide-y-4 divide-black
+                        items-center">
+            <Button value={array[0]} onClick={()=>onClick(0)}/>
+            <Button value={array[1]} onClick={()=>onClick(1)}/>
+            <Button value={array[2]} onClick={()=>onClick(2)}/>
+            <Button value={array[3]} onClick={()=>onClick(3)}/>
+            <Button value={array[4]} onClick={()=>onClick(4)}/>
+            <Button value={array[5]} onClick={()=>onClick(5)}/>
+            <Button value={array[6]} onClick={()=>onClick(6)}/>
+            <Button value={array[7]} onClick={()=>onClick(7)}/>
+            <Button value={array[8]} onClick={()=>onClick(8)}/>
         </div>
     </div>
   )
