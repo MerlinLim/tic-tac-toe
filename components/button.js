@@ -8,11 +8,10 @@ const Button = ({value, onClick}) => {
             onClick()
             setFlag(!flag)
         }
-
     }
-
+    
     return (
-        <div className="h-full flex flex-col justify-center text-center shadow-lg"
+        <div className="h-full flex flex-col justify-center text-center"
             onClick={click}>
             {value}
         </div>

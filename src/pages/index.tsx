@@ -109,28 +109,18 @@ export default function Home() {
 
   let page = <></>
   if (start){
-    page = 
-      <div className="flex flex-col justify-center">
-        <Start toggleGame={toggleGame}/>
-      </div>
+    page = <Start toggleGame={toggleGame}/>
   } else if (!start && (win || draw)){
-    page =
-    <div className="flex flex-col justify-center">
-      <Results winner={turn} draw={draw} resetGame={resetGame}/>
-    </div>
+    page = <Results winner={turn} draw={draw} resetGame={resetGame}/>
   } else if(!start && !win){
-    page =
-    <div className="flex flex-col justify-center">
-      <div className="py-2">
-          <Gameheader turn={turn}/>
-      </div>
-      <Game array={array} onClick={onClick}/>
-    </div>
+    page = <Game array={array} turn={turn} onClick={onClick}/>
   }
 
   return (
     <div className = "w-screen h-screen flex justify-center bg-blue-400">
-      {page}
+      <div className="flex flex-col justify-center">
+        {page}
+      </div>
     </div>
   );
 }
