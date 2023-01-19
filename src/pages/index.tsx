@@ -1,15 +1,15 @@
 import { useState } from "react"
 
 import Game from "components/game"
-import Gameheader from "components/gameheader"
 import Results from "components/results"
 import Start from "components/start.js"
 
 export default function Home() {
-  const[start, setStart] = useState(true)
+  const[session, toggleSession] = useState(false)
   const[win, setWin] = useState(false)
   const[draw, setDraw] = useState(false)
   const[turn, setTurn] = useState('X')
+  const[score, setScore] = useState([0, 0])
   const [array, setArray] = useState([
     '',
     '',
@@ -23,7 +23,23 @@ export default function Home() {
   ]);
 
   function toggleGame(){
-    setStart(false)
+    toggleSession(true)
+  }
+
+  function toggleSettings(){
+
+  }
+
+  function addScore(winner:string){
+    let newScore = []
+    if (winner === "X"){
+      newScore = [score[0] + 1, score[1]]
+    } else if (winner === "O"){
+      newScore = [score[0], score[1] + 1]
+    }else{
+      newScore = score
+    }
+    setScore(newScore)
   }
 
   function resetGame(){
@@ -99,6 +115,7 @@ export default function Home() {
     const res = checkWin(newArr, turn)
     if (res === turn){
       setWin(true)
+      addScore(turn)
       return
     } else if (res == "draw") {
       setDraw(true)
@@ -108,19 +125,18 @@ export default function Home() {
   }
 
   let page = <></>
-  if (start){
-    page = <Start toggleGame={toggleGame}/>
-  } else if (!start && (win || draw)){
-    page = <Results winner={turn} draw={draw} resetGame={resetGame}/>
-  } else if(!start && !win){
-    page = <Game array={array} turn={turn} onClick={onClick}/>
+  if (!session){
+    page = <Start toggleGame={toggleGame} toggleSettings={toggleSettings}/>
+  } else if (session && (win || draw)){
+    page = <Results score={score} winner={turn} draw={draw} resetGame={resetGame} toggleSettings= {toggleSettings}/>
+  } else if(session && !win){
+    page = <Game score={score} array={array} turn={turn} onClick={onClick}/>
   }
 
   return (
-    <div className = "w-screen h-screen flex justify-center bg-blue-400">
-      <div className="flex flex-col justify-center">
+
+    <div className = "w-screen h-screen flex justify-center">
         {page}
-      </div>
     </div>
   );
 }

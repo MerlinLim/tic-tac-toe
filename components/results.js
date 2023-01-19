@@ -1,24 +1,38 @@
-import NewGameButton from "./newgamebutton"
+import Score from "./score"
+import Button from "./button"
 
-const Results = ({winner, draw, resetGame}) => {
+const Results = ({score, winner, draw, resetGame, toggleSettings}) => {
 
     let message = ""
     if (draw){
         message = "It's a draw, Try again!"
     }else{
-        message = winner + " is the winner!"
+        message = winner + " Wins!"
     }
 
-  return (
-    <div className="w-80 h-80 flex flex-col justify-evenly rounded-lg shadow-lg bg-orange-900">
-        <div className="flex justify-center text-xl text-amber-50 pb-20">
-          {message}
+    return (
+      <div className = "w-full h-full flex flex-col">
+        <div className="w-full px-10 py-10 flex justify-start">
+          <Score nought_score={score[0]} circle_score={score[1]}/>
         </div>
-        <div className="flex justify-center">
-          <NewGameButton onClick={resetGame} />
+        <div className="h-1/4"></div> {/*padding*/}
+        <div className="flex flex-col justify-center self-center">
+          <div className="box-border w-96 h-96 flex flex-col">
+              <div className="w-full h-5/6 flex flex-col justify-center text-center text-5xl font-bold">
+                {message}
+              </div>
+              <div className="h-40 flex flex-col justify-evenly">
+                <div className="flex justify-center">
+                  <Button text = {"Try Again"} onClick = {resetGame}/>
+                </div>
+                <div className="flex justify-center">
+                  <Button text = {"Settings"} onClick = {toggleSettings}/>
+                </div>
+              </div>
+          </div>
         </div>
     </div>
-  )
+    )
 }
 export default Results
 

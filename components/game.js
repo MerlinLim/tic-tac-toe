@@ -1,30 +1,22 @@
-import Button from "components/button"
+import Score from "components/score"
+import Grid from "components/grid"
 import Gameheader from "./gameheader"
 
-const Game = ({array, turn, onClick}) => {
+const Game = ({score, array, turn, onClick}) => {
   return (
-    <div>
-      <div className="py-2">
-        <Gameheader turn={turn}/>
+    <div className = "w-full h-full flex flex-col">
+      <div className="px-10 py-10 flex justify-start">
+        <Score nought_score={score[0]} circle_score={score[1]}/>
       </div>
-      <div className="w-96 h-96 flex justify-center rounded-lg">
-        <div className="w-full grid gap-0 grid-rows-3 divide-y-2 divide-black items-center">
-          <div className="w-full h-full grid gap-0 grid-cols-3 divide-x-2 divide-black items-center">
-            <Button value={array[0]} onClick={()=>onClick(0)}/>
-            <Button value={array[1]} onClick={()=>onClick(1)}/>
-            <Button value={array[2]} onClick={()=>onClick(2)}/>
+      <div className="h-1/6"></div> {/*padding*/}
+      
+      <div className="flex flex-col justify-center self-center">
+        <div className="w-96 h-full flex flex-col justify-center items-center">
+          <div className="py-10">
+            <Gameheader turn={turn}/>
           </div>
-          <div className="w-full h-full grid gap-0 grid-cols-3 divide-x-2 divide-black items-center">
-            <Button value={array[3]} onClick={()=>onClick(3)}/>
-            <Button value={array[4]} onClick={()=>onClick(4)}/>
-            <Button value={array[5]} onClick={()=>onClick(5)}/>
-          </div>
-          <div className="w-full h-full grid gap-0 grid-cols-3 divide-x-2 divide-black items-center">
-            <Button value={array[6]} onClick={()=>onClick(6)}/>
-            <Button value={array[7]} onClick={()=>onClick(7)}/>
-            <Button value={array[8]} onClick={()=>onClick(8)}/>
-          </div>
-        </div> 
+            <Grid array ={array} onClick= {onClick}/>
+        </div>
       </div>
     </div>
   )
