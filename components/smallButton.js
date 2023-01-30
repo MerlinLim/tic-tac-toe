@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Button = ({text, onClick}) => {
+const SmallButton = ({text, onClick}) => {
   return (
-    <div className="w-36 h-10 md:w-44 md:h-12
+    <div className="w-20 h-10 md:w-24 md:h-12
                     flex flex-col justify-center
                     text-center rounded-lg shadow-xl
                     text-lg md:text-2xl bg-sky-500 text-white"
@@ -12,4 +12,4 @@ const Button = ({text, onClick}) => {
   )
 }
 
-export default Button
+export default SmallButton

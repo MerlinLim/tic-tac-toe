@@ -3,23 +3,19 @@ import { useState } from "react"
 import Game from "components/game"
 import Results from "components/results"
 import Start from "components/start.js"
+import Settings from "components/settings"
 
 export default function Home() {
   const[session, toggleSession] = useState(false)
+  const[showSettings, setShowSettings] = useState(false)
   const[win, setWin] = useState(false)
   const[draw, setDraw] = useState(false)
   const[turn, setTurn] = useState('X')
   const[score, setScore] = useState([0, 0])
-  const [array, setArray] = useState([
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
+  const[array, setArray] = useState([
+    '','','',
+    '','','',
+    '','',''
   ]);
 
   function toggleGame(){
@@ -27,7 +23,7 @@ export default function Home() {
   }
 
   function toggleSettings(){
-
+    setShowSettings(!showSettings)
   }
 
   function addScore(winner:string){
@@ -47,15 +43,9 @@ export default function Home() {
     setWin(false)
     setDraw(false)
     setArray([
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      ''
+      '','','',
+      '','','',
+      '','',''
     ]);
   }
 
@@ -125,7 +115,9 @@ export default function Home() {
   }
 
   let page = <></>
-  if (!session){
+  if (showSettings){
+    page = <Settings toggleSettings={toggleSettings} />
+  }else if (!session){
     page = <Start toggleGame={toggleGame} toggleSettings={toggleSettings}/>
   } else if (session && (win || draw)){
     page = <Results score={score} winner={turn} draw={draw} resetGame={resetGame} toggleSettings= {toggleSettings}/>
@@ -135,7 +127,7 @@ export default function Home() {
 
   return (
 
-    <div className = "w-screen h-screen flex justify-center">
+    <div className = "w-screen h-screen">
         {page}
     </div>
   );
