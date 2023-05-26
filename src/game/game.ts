@@ -11,7 +11,7 @@
 //   gameArray = Game.createGrid(gridSize);
 // }
 
-export type gameArray = number[];
+export type GameArray = number[];
 
 export function checkRowWin(
   gameArray: number[],
