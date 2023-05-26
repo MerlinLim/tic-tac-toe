@@ -30,7 +30,12 @@ const GamePage = ({}: GamePageProps) => {
     if (targetValue.length == 0 || Number.isNaN(Number(targetValue))) {
       return;
     }
-    setGridSize(Number(targetValue));
+    const numericValue = Number(targetValue);
+
+    if (numericValue < 1 || numericValue > 10){
+      return;
+    }
+    setGridSize(numericValue);
   }
 
   function onClickPlayerSize(targetValue: string) {
@@ -39,7 +44,7 @@ const GamePage = ({}: GamePageProps) => {
     }
     const numericValue = Number(targetValue);
 
-    if (numericValue < 2 || numericValue > 90) {
+    if (numericValue < 2) {
       return;
     }
 
